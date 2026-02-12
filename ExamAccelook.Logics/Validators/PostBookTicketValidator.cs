@@ -31,13 +31,19 @@ namespace ExamAccelook.Logics.Validators
 
                 ticket.RuleFor(t => t.Quantity)
                     .GreaterThan(0).WithMessage("Quantity must be greater than 0")
-                    .Must((item, qty) =>
+                    .MustAsync(async (item, qty, cancellationToken) =>
                     {
                         try
                         {
-                            var ticket = _db.Tickets.FirstOrDefault(t => t.TicketCode == item.TicketCode);
-                            if (ticket == null) return false;
-                            if (ticket.Quota <= 0) return false;
+                            var ticket = await _db.Tickets.FirstOrDefaultAsync(t => t.TicketCode == item.TicketCode, cancellationToken);
+                            if (ticket == null)
+                            {
+                                return false;
+                            }
+                            if (ticket.Quota <= 0)
+                            {
+                                return false;
+                            }
                             return qty <= ticket.Quota;
                         }
                         catch

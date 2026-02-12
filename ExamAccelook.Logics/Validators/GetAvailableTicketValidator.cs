@@ -60,6 +60,15 @@ namespace ExamAccelook.Logics.Validators
                 .WithMessage("Order Direction cannot be empty.")
                 .Must(BeValidOrderDirection)
                 .WithMessage($"Order Direction must be one of: {string.Join(", ", OrderDirections)}.");
+
+            RuleFor(Q => Q.PageNumber)
+                .GreaterThan(0)
+                .WithMessage("PageNumber must be greater than 0.");
+
+            RuleFor(Q => Q.PageSize)
+                .GreaterThan(0)
+                .LessThanOrEqualTo(100)
+                .WithMessage("PageSize must be greater than 0 and less than or equal to 100.");
         }
 
         private bool BeValidOrderByColumn(string orderBy)

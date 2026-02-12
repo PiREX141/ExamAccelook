@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using ExamAccelook.Contracts.RequestModels;
 using ExamAccelook.Contracts.ResponseModels;
@@ -10,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExamAccelook.Logics.Handlers
 {
-    public class GetAvailableTicketHandler : IRequestHandler<GetAvailableTicketRequest, List<GetAvailableTicketResponse>>
+    public class GetAvailableTicketHandler : IRequestHandler<GetAvailableTicketRequest, GetAvailableTicketPagedResponse>
     {
         private readonly ExamAccelookContext _db;
         private readonly ILogger<GetAvailableTicketHandler> _logger;
@@ -21,9 +22,9 @@ namespace ExamAccelook.Logics.Handlers
             _logger = logger;
         }
 
-        public async Task<List<GetAvailableTicketResponse>> Handle(GetAvailableTicketRequest request, CancellationToken cancellationToken)
+        public async Task<GetAvailableTicketPagedResponse> Handle(GetAvailableTicketRequest request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("GetAvailableTicket started. CategoryName={CategoryName} TicketCode={TicketCode} TicketName={TicketName} MaxPrice={MaxPrice} EventDateFrom={EventDateFrom} EventDateTo={EventDateTo} OrderBy={OrderBy} OrderDirection={OrderDirection}", request.CategoryName, request.TicketCode, request.TicketName, request.MaxPrice, request.EventDateFrom, request.EventDateTo, request.OrderBy, request.OrderDirection);
+            _logger.LogInformation("GettingAvailableTicket: TicketCode={TicketCode}", request.TicketCode);
 
             var query = _db.Tickets
                 .Join(_db.Categories,
@@ -79,11 +80,25 @@ namespace ExamAccelook.Logics.Handlers
 
             projectedQuery = ApplyOrdering(projectedQuery, request.OrderBy, request.OrderDirection);
 
-            var result = await projectedQuery.ToListAsync(cancellationToken);
+            var totalCount = await projectedQuery.CountAsync(cancellationToken);
 
-            _logger.LogInformation("GetAvailableTicket returned {Count} items", result.Count);
+            var pageNumber = request.PageNumber <= 0 ? 1 : request.PageNumber;
+            var pageSize = request.PageSize <= 0 ? 10 : request.PageSize;
 
-            return result;
+            var pagedQuery = projectedQuery
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
+
+            var items = await pagedQuery.ToListAsync(cancellationToken);
+
+            _logger.LogInformation("GetAvailableTicket success for: {Count} items (page {PageNumber} size {PageSize}) out of {Total}", 
+                items.Count, pageNumber, pageSize, totalCount);
+
+            return new GetAvailableTicketPagedResponse
+            {
+                Tickets = items,
+                TotalTickets = totalCount
+            };
         }
 
         private IQueryable<GetAvailableTicketResponse> ApplyOrdering(

@@ -6,7 +6,7 @@ using MediatR;
 
 namespace ExamAccelook.Contracts.RequestModels
 {
-    public class GetAvailableTicketRequest : IRequest<List<GetAvailableTicketResponse>>
+    public class GetAvailableTicketRequest : IRequest<GetAvailableTicketPagedResponse>
     {
         public string CategoryName { get; set; } = string.Empty;
         public string TicketCode { get; set; } = string.Empty;
@@ -17,5 +17,8 @@ namespace ExamAccelook.Contracts.RequestModels
 
         public string OrderBy { get; set; } = "TicketCode";
         public string OrderDirection { get; set; } = "ASC";
+        
+        public int PageNumber { get; set; } = 1; 
+        public int PageSize { get; set; } = 10; 
     }
 }
