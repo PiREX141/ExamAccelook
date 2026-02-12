@@ -1,0 +1,6 @@
+@ExamAccelook_HostAddress = http://localhost:5041
+
+GET {{ExamAccelook_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

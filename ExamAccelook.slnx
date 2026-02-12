@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ExamAccelook.Contracts/ExamAccelook.Contracts.csproj" />
+  <Project Path="ExamAccelook.Entities/ExamAccelook.Entities.csproj" />
+  <Project Path="ExamAccelook.Logics/ExamAccelook.Logics.csproj" />
+  <Project Path="ExamAccelook/ExamAccelook.csproj" />
+</Solution>
