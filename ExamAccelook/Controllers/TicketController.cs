@@ -52,7 +52,7 @@ namespace ExamAccelook.Controllers
         [HttpDelete("revoke-ticket/{BookedTicketId}/{TicketCode}/{Qty}")]
         public async Task<IActionResult> RevokeTicket([FromRoute] int BookedTicketId, [FromRoute] string TicketCode, [FromRoute(Name = "Qty")] int Quantity, CancellationToken cancellationToken)
         {
-            var request = new ExamAccelook.Contracts.RequestModels.RevokeTicketRequest
+            var request = new RevokeTicketRequest
             {
                 BookedTicketId = BookedTicketId,
                 TicketCode = TicketCode,

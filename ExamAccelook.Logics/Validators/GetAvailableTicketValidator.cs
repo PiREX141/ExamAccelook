@@ -74,7 +74,9 @@ namespace ExamAccelook.Logics.Validators
         private bool BeValidOrderByColumn(string orderBy)
         {
             if (string.IsNullOrWhiteSpace(orderBy))
+            {
                 return false;
+            }
 
             return Array.Exists(OrderByColumns, col =>
                 col.Equals(orderBy, StringComparison.OrdinalIgnoreCase));
@@ -83,7 +85,9 @@ namespace ExamAccelook.Logics.Validators
         private bool BeValidOrderDirection(string orderDirection)
         {
             if (string.IsNullOrWhiteSpace(orderDirection))
+            {
                 return false;
+            }
 
             return Array.Exists(OrderDirections, dir =>
                 dir.Equals(orderDirection, StringComparison.OrdinalIgnoreCase));

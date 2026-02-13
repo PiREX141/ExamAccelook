@@ -42,13 +42,14 @@ namespace ExamAccelook.Logics.Handlers
                 var detail = details.FirstOrDefault(d => d.TicketCode == item.TicketCode);
                 var ticket = tickets.FirstOrDefault(t => t.TicketCode == item.TicketCode);
 
-                if (detail == null || ticket == null) continue; // validation should prevent this
+                if (detail == null || ticket == null)
+                {
+                    continue;
+                }
 
-                // adjust ticket quota: restore previous quantity then deduct new
                 var oldQuota = ticket.Quota;
                 ticket.Quota = ticket.Quota + detail.Quantity - item.NewQuantity;
 
-                // update booking detail quantity
                 detail.Quantity = item.NewQuantity;
                 detail.UpdatedAt = System.DateTime.UtcNow;
 
@@ -57,7 +58,6 @@ namespace ExamAccelook.Logics.Handlers
 
             await _db.SaveChangesAsync(cancellationToken);
 
-            // prepare response
             var response = details
                 .Join(tickets, d => d.TicketCode, t => t.TicketCode, (d, t) => new EditBookedTicketResponse
                 {
