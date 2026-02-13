@@ -37,7 +37,7 @@ NIM   : 2702212143
      - A database already has "C001" for "Cinema" Ticket.
      - If a new data is being inserted for "Transportasi Darat", the result will be "TD001" and not "TD002".
 - The _LastSequenceNumber_ and _SequenceNumber_ don't really need to be implemented fully in this case since there are no POST Ticket requirements.
-- There was an error in the database where **BookingDetail** Table references **Ticket** Table. The reference should be placed in the **BookedTicket** Table, but due to time constraints, it wasn't modified.
+- There was a minor mistake in the database where **BookingDetail** Table references **Ticket** Table. The reference should be placed in the **BookedTicket** Table, but due to time constraints, it wasn't modified.
 - For the complete Database Creation queries, they can be found in _Initial.sql_ file inside _ExamAccelook.Entities_.
 
  ## MARVEL Pattern
