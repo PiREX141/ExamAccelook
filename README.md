@@ -10,16 +10,16 @@ NIM   : 2702212143
 
 ### Tables in the Database:
 1. Category
-   <img width="563" height="170" alt="image" src="https://github.com/user-attachments/assets/8600b7cd-edc8-4a1e-b510-17496b1a3ff6" />
+<img width="563" height="170" alt="image" src="https://github.com/user-attachments/assets/8600b7cd-edc8-4a1e-b510-17496b1a3ff6" />
 
 2. Ticket
-   <img width="714" height="370" alt="image" src="https://github.com/user-attachments/assets/24d16e19-5c60-4f4b-8e7c-e89f2a4efdc6" />
-
+<img width="714" height="370" alt="image" src="https://github.com/user-attachments/assets/24d16e19-5c60-4f4b-8e7c-e89f2a4efdc6" />
+   
 3. BookedTicket
-   <img width="606" height="195" alt="image" src="https://github.com/user-attachments/assets/d36a2f54-0ba4-41e6-a03f-5fc42e297c47" />
+<img width="606" height="195" alt="image" src="https://github.com/user-attachments/assets/d36a2f54-0ba4-41e6-a03f-5fc42e297c47" />
 
 4. BookingDetail
-   <img width="845" height="343" alt="image" src="https://github.com/user-attachments/assets/d35d0c0c-44ec-4bee-b30d-a789e7f82bf9" />
+<img width="845" height="343" alt="image" src="https://github.com/user-attachments/assets/d35d0c0c-44ec-4bee-b30d-a789e7f82bf9" />
 
 ### Notes:
 - The database used in the project is SQLServer.
