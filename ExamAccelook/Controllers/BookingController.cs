@@ -39,18 +39,7 @@ namespace ExamAccelook.Controllers
 
             if (!validationResult.IsValid)
             {
-                var problemDetails = new ValidationProblemDetails();
-
-                foreach (var error in validationResult.Errors)
-                {
-                    problemDetails.Errors.Add(error.PropertyName, new[] { error.ErrorMessage });
-                }
-
-                problemDetails.Title = "One or more validation errors occurred.";
-                problemDetails.Status = 400;
-                problemDetails.Type = "https://datatracker.ietf.org/doc/html/rfc7807";
-
-                return BadRequest(problemDetails);
+                throw new ValidationException(validationResult.Errors);
             }
 
             var response = await _mediator.Send(request, cancellationToken);
@@ -69,18 +58,7 @@ namespace ExamAccelook.Controllers
 
             if (!validationResult.IsValid)
             {
-                var problemDetails = new ValidationProblemDetails();
-
-                foreach (var error in validationResult.Errors)
-                {
-                    problemDetails.Errors.Add(error.PropertyName, new[] { error.ErrorMessage });
-                }
-
-                problemDetails.Title = "One or more validation errors occurred.";
-                problemDetails.Status = 400;
-                problemDetails.Type = "https://datatracker.ietf.org/doc/html/rfc7807";
-
-                return BadRequest(problemDetails);
+                throw new ValidationException(validationResult.Errors);
             }
 
             var response = await _mediator.Send(request, cancellationToken);
@@ -101,18 +79,7 @@ namespace ExamAccelook.Controllers
 
             if (!validationResult.IsValid)
             {
-                var problemDetails = new ValidationProblemDetails();
-
-                foreach (var error in validationResult.Errors)
-                {
-                    problemDetails.Errors.Add(error.PropertyName, new[] { error.ErrorMessage });
-                }
-
-                problemDetails.Title = "One or more validation errors occurred.";
-                problemDetails.Status = 400;
-                problemDetails.Type = "https://datatracker.ietf.org/doc/html/rfc7807";
-
-                return BadRequest(problemDetails);
+                throw new ValidationException(validationResult.Errors);
             }
 
             var response = await _mediator.Send(request, cancellationToken);
