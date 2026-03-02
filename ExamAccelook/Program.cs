@@ -19,6 +19,18 @@ var configuration = builder.Configuration;
 
 builder.Host.UseSerilog();
 
+// Configure CQRS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
+
 // Configure SQL Server
 builder.Services.AddEntityFrameworkSqlServer();
 builder.Services.AddDbContextPool<ExamAccelookContext>(options =>
@@ -67,6 +79,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("AllowAll");
 
 app.Run();
 
