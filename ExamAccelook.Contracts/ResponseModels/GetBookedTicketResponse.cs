@@ -15,6 +15,7 @@ namespace ExamAccelook.Contracts.ResponseModels
     {
         public string TicketCode { get; set; } = string.Empty;
         public string TicketName { get; set; } = string.Empty;
+        public int Quantity { get; set; }
         public DateTime EventDate { get; set; }
     }
 }

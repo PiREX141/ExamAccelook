@@ -41,6 +41,7 @@ namespace ExamAccelook.Logics.Handlers
                     {
                         TicketCode = x.TicketCode,
                         TicketName = x.TicketCodeNavigation.TicketName,
+                        Quantity = x.Quantity,
                         EventDate = x.TicketCodeNavigation.EventDate
                     }).ToList()
                 })
