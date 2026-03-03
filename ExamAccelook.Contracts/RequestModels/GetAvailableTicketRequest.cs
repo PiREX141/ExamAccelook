@@ -18,7 +18,7 @@ namespace ExamAccelook.Contracts.RequestModels
         public string OrderBy { get; set; } = "TicketCode";
         public string OrderDirection { get; set; } = "ASC";
         
-        public int PageNumber { get; set; } = 1; 
+        public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 10; 
     }
 }

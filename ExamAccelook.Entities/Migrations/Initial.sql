@@ -67,23 +67,38 @@ VALUES
     ('TL001', 1, 'Kapar Ferri Jawa-Sumatra', 1, 50000000.00, '2030-03-01 12:00:00', 80, GETDATE()),
     ('TD001', 2, 'Bus Jawa-Sumatra', 1, 50000000.00, '2030-03-01 12:00:00', 70, GETDATE()),
     ('C001', 4, 'Ironman CGV', 1, 50000000.00, '2030-03-01 12:00:00', 99, GETDATE()),
-    ('H001', 5, 'Ibis Hotel Jakarta 21-23', 1, 50000000.00, '2030-03-01 12:00:00', 76, GETDATE());
+    ('H001', 5, 'Ibis Hotel Jakarta 21-23', 1, 50000000.00, '2030-03-01 12:00:00', 76, GETDATE()),
+    ('TU001', 3, 'Citilink CGK - PNK', 1, 1000000.00, '2030-03-01 12:00:00', 80, GETDATE()),
+    ('K001', 6, 'Konser Linked Park', 1, 2500000.00, '2030-03-01 12:00:00', 100, GETDATE()),
+    ('TL002', 1, 'Kapal Jawa - Kalimantan', 2, 500000.00, '2030-03-01 12:00:00', 75, GETDATE()),
+    ('TD002', 2, 'Bus Jakarta - Bandung', 2, 100000.00, '2030-03-01 12:00:00', 70, GETDATE()),
+    ('C002', 4, 'Spiderman XXI', 2, 70000.00, '2030-03-01 12:00:00', 99, GETDATE()),
+    ('H002', 5, 'The Continental', 2, 50000000.00, '2030-03-01 12:00:00', 120, GETDATE()),
+    ('TU002', 3, 'Air Asia KL - CGK', 2, 1000000.00, '2030-03-01 12:00:00', 80, GETDATE());
 
 UPDATE Category 
-SET LastSequenceNumber = 1 
+SET LastSequenceNumber = 2
 WHERE CategoryId = 1;
 
 UPDATE Category 
-SET LastSequenceNumber = 1 
+SET LastSequenceNumber = 2 
 WHERE CategoryId = 2;
 
 UPDATE Category 
-SET LastSequenceNumber = 1 
+SET LastSequenceNumber = 2 
 WHERE CategoryId = 4;
 
 UPDATE Category 
-SET LastSequenceNumber = 1 
+SET LastSequenceNumber = 2 
 WHERE CategoryId = 5;
+
+UPDATE Category 
+SET LastSequenceNumber = 2 
+WHERE CategoryId = 3;
+
+UPDATE Category 
+SET LastSequenceNumber = 1 
+WHERE CategoryId = 6;
 
 SELECT * FROM Ticket
 SELECT * FROM Category
